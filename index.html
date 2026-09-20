@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WM Atelier</title>
+<style>
+body {
+border: 1px solid black;
+margin: 5px;
+background-color: rgb(240, 240, 202);
+font-family: sans-serif;
+}
+hr {
+border: none;
+height: 1px;
+background-color: black;
+margin: 5px 0;
+}
+img {
+margin-left: 5px;
+object-fit: contain;
+max-height: 100%;
+max-width: 100%;
+}
+#topo-real {
+scroll-margin-top: 2px !important;
+}
+.inicio_real{
+display: flex; 
+align-items: center; 
+justify-content: space-around; 
+background-color: black;
+box-shadow: inset 0px 0px 30px 0px rgb(206, 181, 40);
+}
+.logo {
+display: flex;
+color: rgb(206, 181, 40);
+align-items: center;
+font-size: 15px;
+padding: 10px 0;
+}
+.agulha {
+margin-bottom: 29px;
+}
+.vestido {
+margin-left: -12px;
+}
+.slogan {
+font-size: 15px;
+display: flex;
+white-space: nowrap;
+color: rgb(206, 181, 40);
+}
+.abaixo {
+font-size: 25px;
+margin-left: -8px;
+}
+.titulo_seções {
+font-size: 20px;
+margin-top: 13px;
+margin-left: 3px;
+text-align: center;
+scroll-margin-top: 100px;
+font-weight: bold;
+}
+/* NOVA CLASSE: Controla o container que rola e esconde as barras */
+.carrossel {
+display: flex; 
+ Khar: auto;
+ overflow-x: auto; 
+ padding-bottom: 10px;
+ -ms-overflow-style: none;  /* IE e Edge */
+ scrollbar-width: none;  /* Firefox */
+ scroll-behavior: smooth;
+ -webkit-overflow-scrolling: touch; /* Rolagem suave no iOS */
+}
+.carrossel::-webkit-scrollbar {
+  display: none; /* Chrome, Safari e Opera */
+}
+.trilho {
+align-items: center;
+display: flex;
+flex-direction: column;
+border: 1px solid;
+width: 140px;
+text-align: center;
+padding: 10px;
+flex-shrink: 0;
+margin: 5px;
+}
+.nav {
+justify-content: space-around;
+display: flex;
+flex-wrap: nowrap;
+position: sticky;
+top: 43px;
+z-index: 9999;
+margin: -4px 2px -21px 2px;
+background-color: black;
+padding: 10px;
+flex-direction: row;
+gap: 15px;
+white-space: nowrap;
+overflow-x: auto;
+border: 3px solid  rgb(206, 181, 40);
+box-shadow: inset 0px 0px 10px 3px rgb(206, 181, 40);
+}
+.nav a {
+text-decoration: none;
+color: rgb(206, 181, 40);
+border: 1px solid;
+background-color: black;
+border-width: 4px;
+white-space: nowrap;
+}
+/* --- CONFIGURAÇÕES DO MODAL --- */
+/* Esconde o modal por padrão e cobre a tela toda */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color:aquamarine; /* Fundo escuro semi-transparente */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  
+  /* Esconde o elemento */
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+/* Quando o link com o ID do modal for ativo, ele aparece */
+.modal-overlay:target {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Caixa branca interna do modal */
+.modal-conteudo {
+  background-color: rgb(240, 240, 202); /* Mesma cor de fundo do seu site */
+  padding: 30px;
+  border: 2px solid rgb(68, 53, 53);
+  max-width: 500px;
+  width: 80%;
+  position: relative;
+  text-align:left;
+  box-shadow: 0px 4px 10px rgba(0,0,0,0.3);
+}
+
+/* Estilo do botão de fechar (X) */
+.botao-fechar {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 28px;
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* Estilização do botão que abre o modal para combinar com seu design */
+.botao-abrir {
+text-decoration: none;
+display: inline-block;
+margin-top: 10px;
+padding: 5px 10px;
+border: 1px solid black;
+color: black !important;
+background-color: rgb(206, 181, 40);
+font-size: 13px;
+}
+.fale_conosco{
+display: flex;
+margin: 5px 5px 5px 10px;
+align-items: center;
+}
+.inicio_fim{
+display: flex;
+justify-content: space-around;
+padding: 8px;
+background-color: black;
+margin: -4px 2px -4px 2px;
+position: sticky;
+top: 0px;
+border: 3px solid  rgb(206, 181, 40);
+box-shadow: inset 0px 0px 10px 3px rgb(206, 181, 40);
+}
+.inicio_fim a{
+text-decoration: none;
+color: rgb(206, 181, 40);
+border: 1px solid;
+background-color: black;
+border-width: 4px;
+}
+</style>
+</head>
+<body>
+
+<div id="topo-real"></div>
+<div class="inicio_real">
+<div class="logo">
+<img src="agulha.png" alt="Agulha" height="35px" class="agulha" id="Início">
+<h1>W <span class="abaixo">M</span><br>Atelier</h1>
+<img src="vestido.png" alt="Vestido" height="60px" class="vestido">
+</div>
+<p class="slogan">Moda casual sob medida:<br>a beleza do atemporal<br>que se renova com você.</p>
+</div>
+<hr>
+<nav class="inicio_fim">
+<a href="#topo-real" class="item-menu">Início</a>
+<a href="#Fale_Conosco">Fale Conosco</a>
+</nav>
+<hr>
+<nav class="nav">
+<a href="#Sob_medida">Roupas sob medida</a>
+<a href="#Atemporais">Peças atemporais</a>
+<a href="#Casual">Moda casual</a>
+<a href="#Em_uso">Renovação de peças em uso</a>
+</nav>
+<br>
+<hr>
+
+
+<p class="titulo_seções" id="Sob_medida">Roupas sob medida</p>
+<p class="titulo_seções">Como funciona:</p>
+<!-- Aplicada a classe .carrossel aqui -->
+<div class="carrossel">
+<div class="trilho">
+<img src="conversando.png" alt="Entrevista" width="100%">
+<a href="#meu-modal" class="botao-abrir">Fazemos a Entrevista Inicial</a>
+<!-- Estrutura do Modal -->
+<div id="meu-modal" class="modal-overlay">
+<div class="modal-conteudo">
+<p>1. Alinhamento de expectativas sobre o uso da peça (ex: trabalho casual, evento).</p>
+<p>2. Escolha do modelo, caimento e referências visuais de estilo.</p>
+<p>3. Seleção dos tecidos, cores, texturas e aviamentos adequados.</p>
+<!-- Botão para fechar o modal (aponta para um ID vazio ou `#`) -->
+<a href="#" class="botao-fechar">&times;</a>
+</div>
+</div>
+</div>
+
+<div class="trilho">
+<img src="régua.png" alt="Medição" width="100%">
+ <a href="#meu-modal1" class="botao-abrir">Tiramos as suas medidas</a>
+<!-- Estrutura do Modal -->
+<div id="meu-modal1" class="modal-overlay">
+<div class="modal-conteudo">
+<p>1. Medição minuciosa de todas as circunferências e comprimentos do corpo.</p>
+<p>2. Análise da postura e ergonomia para garantir o máximo conforto no movimento.</p>
+<!-- Botão para fechar o modal (aponta para um ID vazio ou `#`) -->
+<a href="#" class="botao-fechar">&times;</a>
+</div>
+</div>
+</div>
+
+<div class="trilho">
+<img src="tesoura.png" alt="Corte" width="100%">
+ <a href="#meu-modal2" class="botao-abrir">Cortamos e preparamos o tecido</a>
+<!-- Estrutura do Modal -->
+<div id="meu-modal2" class="modal-overlay">
+<div class="modal-conteudo">
+<p>1. Criação de um molde exclusivo em papel pardo baseado nas suas medidas.</p>
+<p>2. Transferência do desenho e corte do tecido escolhido com margem de segurança.</p>
+<!-- Botão para fechar o modal (aponta para um ID vazio ou `#`) -->
+<a href="#" class="botao-fechar">&times;</a>
+</div>
+</div>
+</div>
+
+<div class="trilho">
+<img src="provador1.png" alt="Prova" width="100%">
+<a href="#meu-modal3" class="botao-abrir">Realizamos a primeira prova</a>
+<!-- Estrutura do Modal -->
+<div id="meu-modal3" class="modal-overlay">
+<div class="modal-conteudo">
+<p>1. Montagem provisória da peça costurada à mão com pontos largos (alinhavo).</p>
+<p>2. Ajuste inicial no corpo para avaliar o caimento, decote e linhas principais.</p>
+<!-- Botão para fechar o modal (aponta para um ID vazio ou `#`) -->
+<a href="#" class="botao-fechar">&times;</a>
+</div>
+</div>
+</div>
+
+<div class="trilho">
+<img src="costura.png" alt="Entrega" width="100%">
+ <a href="#meu-modal4" class="botao-abrir">A Costura Estrutural</a>
+<!-- Estrutura do Modal -->
+<div id="meu-modal4" class="modal-overlay">
+<div class="modal-conteudo">
+<p>1. Execução das costuras definitivas na máquina de costura após os ajustes da prova.</p>
+<p>2. Aplicação de entretelas, forros e acabamentos internos da peça.</p>
+<!-- Botão para fechar o modal (aponta para um ID vazio ou `#`) -->
+<a href="#" class="botao-fechar">&times;</a>
+</div></div></div>
+
+<div class="trilho">
+<img src="provador2.png" alt="Entrega" width="100%">
+<a href="#meu-modal5" class="botao-abrir">A Segunda Prova (Ajustes Finos)</a>
+<!-- Estrutura do Modal -->
+<div id="meu-modal5" class="modal-overlay">
+<div class="modal-conteudo">
+<p>1. Verificação final com a peça quase pronta para marcar a altura exata da bainha.</p>
+<p>2. Posicionamento de botões, zíperes ou colchetes.</p>
+<!-- Botão para fechar o modal (aponta para um ID vazio ou `#`) -->
+<a href="#" class="botao-fechar">&times;</a>
+</div>
+</div>
+</div>
+
+<div class="trilho">
+<img src="entrega.png" alt="Entrega" width="100%">
+<a href="#meu-modal6" class="botao-abrir">Acabamento e Entrega</a>
+<!-- Estrutura do Modal -->
+<div id="meu-modal6" class="modal-overlay">
+<div class="modal-conteudo">
+<p>1. Finalização manual dos detalhes (bainhas invisíveis, casas de botão).</p>
+<p>2. Passadoria profissional da roupa para assentar as costuras.</p>
+<p>3. Entrega da peça exclusiva e perfeitamente ajustada.</p>
+<!-- Botão para fechar o modal (aponta para um ID vazio ou `#`) -->
+<a href="#" class="botao-fechar">&times;</a>
+</div></div></div></div>
+
+<hr>
+
+<p class="titulo_seções" id="Atemporais">Peças atemporais</p>
+<p class="titulo_seções">Como funciona:</p>
+<!-- Aplicada a classe .carrossel aqui -->
+<div class="carrossel">
+<div class="trilho">
+<img src="pesquisa_roupas.png" alt="Entrevista" width="100%">
+<a href="#meu-modal7" class="botao-abrir">Pesquisa de Silhuetas Clássicas e Funcionais</a>
+<!-- Estrutura do Modal -->
+<div id="meu-modal7" class="modal-overlay">
+<div class="modal-conteudo">
+<p>1. Estudo de modelagens que valorizam a anatomia humana há décadas (como o corte reto, a alfaiataria suave e o minimalismo).</p>
+<p>2. Foco no conforto físico e na liberdade de movimento para o dia a dia casual.</p>
+<!-- Botão para fechar o modal (aponta para um ID vazio ou `#`) -->
+<a href="#" class="botao-fechar">&times;</a>
+</div>
+</div>
+</div>
+
+<div class="trilho">
+<img src="qualidade.png" alt="Medição" width="100%">
+ <a href="#meu-modal8" class="botao-abrir">Seleção de Matérias-Primas de Alta Qualidade</a>
+<!-- Estrutura do Modal -->
+<div id="meu-modal8" class="modal-overlay">
+<div class="modal-conteudo">
+<p>1. Escolha de tecidos de fibras naturais ou mistas nobres (como linho, algodão egípcio, lã fria, seda e viscose encorpada).</p>
+<p>2. Prioridade para tecidos que envelhecem bem, não formam bolinhas facilmente e mantêm a estrutura após as lavagens.</p>
+<!-- Botão para fechar o modal (aponta para um ID vazio ou `#`) -->
+<a href="#" class="botao-fechar">&times;</a>
+</div>
+</div>
+</div>
+
+<div class="trilho">
+<img src="cores.png" alt="Corte" width="100%">
+ <a href="#meu-modal9" class="botao-abrir">Definição de uma Paleta de Cores Coesa</a>
+<!-- Estrutura do Modal -->
+<div id="meu-modal9" class="modal-overlay">
+<div class="modal-conteudo">
+<p>1. Uso de cores neutras e sofisticadas como base (preto, branco, off-white, marinho, cinza, bege e tons terrosos).</p>
+<p>2. Inclusão pontual de cores marcantes que não enjoam, garantindo que a peça combine facilmente com o que o cliente já tem no guarda-roupa.</p>
+<!-- Botão para fechar o modal (aponta para um ID vazio ou `#`) -->
+<a href="#" class="botao-fechar">&times;</a>
+</div>
+</div>
+</div>
+
+<div class="trilho">
+<img src="design.png" alt="Prova" width="100%">
+<a href="#meu-modal10" class="botao-abrir">Modelagem Inteligente e Versátil</a>
+<!-- Estrutura do Modal -->
+<div id="meu-modal10" class="modal-overlay">
+<div class="modal-conteudo">
+<p>1. Desenvolvimento de um design que permita à peça transitar entre diferentes ocasiões (ex: um vestido casual que muda de tom apenas trocando os acessórios).</p>
+<p>2. Inclusão de margens internas de costura que permitam pequenos ajustes futuros caso o corpo do cliente mude.</p>
+<!-- Botão para fechar o modal (aponta para um ID vazio ou `#`) -->
+<a href="#" class="botao-fechar">&times;</a>
+</div>
+</div>
+</div>
+
+<div class="trilho">
+<img src="costura1.png" alt="Entrega" width="100%">
+ <a href="#meu-modal11" class="botao-abrir">Construção e Acabamento de Alta Costura</a>
+<!-- Estrutura do Modal -->
+<div id="meu-modal11" class="modal-overlay">
+<div class="modal-conteudo">
+<p>1. Aplicação de técnicas de costura robustas e limpas, como a costura francesa ou embutida, garantindo que o avesso seja tão bonito quanto o lado externo.</p>
+<p>2. Escolha de aviamentos duráveis (botões de madrepérola, chifre ou madeira, e zíperes de alta resistência).</p>
+<!-- Botão para fechar o modal (aponta para um ID vazio ou `#`) -->
+<a href="#" class="botao-fechar">&times;</a>
+</div></div></div>
+
+<div class="trilho">
+<img src="teste_roupa.png" alt="Entrega" width="100%">
+<a href="#meu-modal12" class="botao-abrir">Testes de Usabilidade e Caimento</a>
+<!-- Estrutura do Modal -->
+<div id="meu-modal12" class="modal-overlay">
+<div class="modal-conteudo">
+<p>1. Avaliação de como o tecido se comporta em movimento (sentar, andar, levantar os braços).</p>
+<p>Ajuste fino das proporções para que a roupa não fique datada (evitando exageros de ombreiras, volumes ou assimetrias extremas da moda atual).</p>
+<!-- Botão para fechar o modal (aponta para um ID vazio ou `#`) -->
+<a href="#" class="botao-fechar">&times;</a>
+</div>
+</div>
+</div>
+
+<div class="trilho">
+<img src="avisos_e_cuidados.png" alt="Entrega" width="100%">
+<a href="#meu-modal13" class="botao-abrir">Instruções de Cuidado e Longevidade</a>
+<!-- Estrutura do Modal -->
+<div id="meu-modal13" class="modal-overlay">
+<div class="modal-conteudo">
+<p>1. Criação de orientações claras para o cliente sobre como lavar, secar e armazenar a peça.</p>
+<p>2. Conexão com o serviço de renovação do atelier, garantindo suporte para futuras manutenções da roupa.</p>
+<!-- Botão para fechar o modal (aponta para um ID vazio ou `#`) -->
+<a href="#" class="botao-fechar">&times;</a>
+</div></div></div></div>
+<hr>
+
+<p class="titulo_seções" id="Casual">Moda casual</p>
+<p class="titulo_seções">Como funciona:</p>
+<!-- Aplicada a classe .carrossel aqui -->
+<div class="carrossel">
+<div class="trilho">
+<img src="estilo_vida.png" alt="Entrevista" width="100%">
+<a href="#meu-modal14" class="botao-abrir">Mapeamento da Rotina do Cliente</a>
+<!-- Estrutura do Modal -->
+<div id="meu-modal14" class="modal-overlay">
+<div class="modal-conteudo">
+<p>1. Investigação do estilo de vida do cliente (se trabalha sentado, se caminha muito, o clima da região).</p>
+<p>2. Alinhamento de preferências sobre o nível de folga da roupa (peças mais soltas ou levemente ajustadas).</p>
+<!-- Botão para fechar o modal (aponta para um ID vazio ou `#`) -->
+<a href="#" class="botao-fechar">&times;</a>
+</div>
+</div>
+</div>
+
+<div class="trilho">
+<img src="seleção.png" alt="Medição" width="100%">
+ <a href="#meu-modal15" class="botao-abrir">Seleção de Tecidos Confortáveis e Práticos</a>
+<!-- Estrutura do Modal -->
+<div id="meu-modal15" class="modal-overlay">
+<div class="modal-conteudo">
+<p>1. Escolha de tecidos com toque macio na pele e boa respirabilidade (como malhas de algodão premium, viscolinho, moletinhos finos, jeans com elastano ou liocel).</p>
+<p>2. Foco em materiais que ofereçam facilidade de manutenção (tecidos que não amassam excessivamente ou que são fáceis de passar).</p>
+<!-- Botão para fechar o modal (aponta para um ID vazio ou `#`) -->
+<a href="#" class="botao-fechar">&times;</a>
+</div>
+</div>
+</div>
+
+<div class="trilho">
+<img src="roupa_utilitária.png" alt="Corte" width="100%">
+ <a href="#meu-modal16" class="botao-abrir">Modelagem Ergonômica e Confortável</a>
+<!-- Estrutura do Modal -->
+<div id="meu-modal16" class="modal-overlay">
+<div class="modal-conteudo">
+<p>1. Desenvolvimento de moldes que priorizam a amplitude de movimentos (ganchos de calças confortáveis, cavas de blusas que não prendem os braços).</p>
+<p>2. Inclusão de elementos funcionais que facilitam o cotidiano, como bolsos utilitários profundos e cós com elásticos embutidos ou anatômicos.</p>
+<!-- Botão para fechar o modal (aponta para um ID vazio ou `#`) -->
+<a href="#" class="botao-fechar">&times;</a>
+</div>
+</div>
+</div>
+
+<div class="trilho">
+<img src="montagem.png" alt="Prova" width="100%">
+<a href="#meu-modal17" class="botao-abrir">Corte e Montagem Focados em Durabilidade</a>
+<!-- Estrutura do Modal -->
+<div id="meu-modal17" class="modal-overlay">
+<div class="modal-conteudo">
+<p>1. Posicionamento correto do molde no fio do tecido para garantir que a peça casual não torça após as primeiras lavagens.</p>
+<p>2. Uso de técnicas de costura que acompanham a elasticidade ou o movimento do tecido, evitando linhas rompidas no uso diário.</p>
+<!-- Botão para fechar o modal (aponta para um ID vazio ou `#`) -->
+<a href="#" class="botao-fechar">&times;</a>
+</div>
+</div>
+</div>
+
+<div class="trilho">
+<img src="simulação.png" alt="Entrega" width="100%">
+ <a href="#meu-modal18" class="botao-abrir">A Prova de Movimento</a>
+<!-- Estrutura do Modal -->
+<div id="meu-modal18" class="modal-overlay">
+<div class="modal-conteudo">
+<p>1. Teste da peça no corpo do cliente simulando ações reais do dia a dia: sentar, cruzar as pernas, levantar os braços e caminhar.</p>
+<p>2. Ajuste do comprimento de barras (para uso com calçados planos como tênis ou rasteiras) e folgas necessárias.</p>
+<!-- Botão para fechar o modal (aponta para um ID vazio ou `#`) -->
+<a href="#" class="botao-fechar">&times;</a>
+</div></div></div>
+
+<div class="trilho">
+<img src="resistente.png" alt="Entrega" width="100%">
+<a href="#meu-modal19" class="botao-abrir">Acabamento Flexível e Resistente</a>
+<!-- Estrutura do Modal -->
+<div id="meu-modal19" class="modal-overlay">
+<div class="modal-conteudo">
+<p>1. Uso de costuras reforçadas em pontos de maior tração (como laterais e ganchos) e acabamentos limpos que não geram atrito ou coceira na pele.</p>
+<p>2. Escolha de aviamentos práticos (botões fáceis de abrir, zíperes macios).</p>
+<!-- Botão para fechar o modal (aponta para um ID vazio ou `#`) -->
+<a href="#" class="botao-fechar">&times;</a>
+</div>
+</div>
+</div>
+
+<div class="trilho">
+<img src="limpeza.png" alt="Entrega" width="100%">
+<a href="#meu-modal20" class="botao-abrir">Finalização e Higienização</a>
+<!-- Estrutura do Modal -->
+<div id="meu-modal20" class="modal-overlay">
+<div class="modal-conteudo">
+<p>1. Passadoria adequada para assentar as costuras sem tirar a textura natural e despojada do tecido casual.</p>
+<p>2. Entrega de uma peça versátil, pronta para transitar do ambiente de trabalho para um momento de lazer.</p>
+<!-- Botão para fechar o modal (aponta para um ID vazio ou `#`) -->
+<a href="#" class="botao-fechar">&times;</a>
+</div></div></div></div>
+
+<hr>
+<p class="titulo_seções" id="Em_uso">Renovação de peças em uso</p>
+<p class="titulo_seções">Como funciona:</p>
+<!-- Aplicada a classe .carrossel aqui -->
+<div class="carrossel">
+<div class="trilho">
+<img src="estado_roupa.png" alt="Entrevista" width="100%">
+<a href="#meu-moda21" class="botao-abrir">Análise de Viabilidade e Estado da Peça</a>
+<!-- Estrutura do Modal -->
+<div id="meu-modal21" class="modal-overlay">
+<div class="modal-conteudo">
+<p>1. Avaliação minuciosa da estrutura do tecido (se há furos, manchas, fios desfiados ou áreas desgastadas).</p>
+<p>2. Verificação da quantidade de tecido disponível nas margens internas de costura para possíveis ampliações ou alterações de formato.</p>
+<!-- Botão para fechar o modal (aponta para um ID vazio ou `#`) -->
+<a href="#" class="botao-fechar">&times;</a>
+</div>
+</div>
+</div>
+
+<div class="trilho">
+<img src="briefing.png" alt="Medição" width="100%">
+ <a href="#meu-modal22" class="botao-abrir">Briefing de Transformação com o Cliente</a>
+<!-- Estrutura do Modal -->
+<div id="meu-modal22" class="modal-overlay">
+<div class="modal-conteudo">
+<p>1. Identificação do motivo da renovação (a peça não serve mais, o modelo ficou datado ou o cliente quer mudar a função da roupa, como transformar um vestido em um conjunto de saia e cropped).</p>
+<p>2. Alinhamento de referências de estilo para que a nova versão se conecte com o guarda-roupa atual do cliente.</p>
+<!-- Botão para fechar o modal (aponta para um ID vazio ou `#`) -->
+<a href="#" class="botao-fechar">&times;</a>
+</div>
+</div>
+</div>
+
+<div class="trilho">
+<img src="higienização.png" alt="Corte" width="100%">
+ <a href="#meu-modal23" class="botao-abrir">Desmontagem e Higienização Técnica</a>
+<!-- Estrutura do Modal -->
+<div id="meu-modal23" class="modal-overlay">
+<div class="modal-conteudo">
+<p>1. Descostura cuidadosa das partes necessárias da peça original usando abridores de casa para não rasgar as fibras.</p>
+<p>2. Passadoria térmica de cada parte desfeita para eliminar as marcas das costuras antigas e assentar o tecido para o novo corte.</p>
+<!-- Botão para fechar o modal (aponta para um ID vazio ou `#`) -->
+<a href="#" class="botao-fechar">&times;</a>
+</div>
+</div>
+</div>
+
+<div class="trilho">
+<img src="novo_corte.png" alt="Prova" width="100%">
+<a href="#meu-modal24" class="botao-abrir">Remodelagem e Novo Corte</a>
+<!-- Estrutura do Modal -->
+<div id="meu-modal24" class="modal-overlay">
+<div class="modal-conteudo">
+<p>1. Aplicação do novo molde sob medida sobre o tecido da peça antiga.</p>
+<p>2. Inclusão de margens internas de costura que permitam pequenos ajustes futuros caso o corpo do cliente mude.</p>
+<!-- Botão para fechar o modal (aponta para um ID vazio ou `#`) -->
+<a href="#" class="botao-fechar">&times;</a>
+</div>
+</div>
+</div>
+
+<div class="trilho">
+<img src="ajustes.png" alt="Entrega" width="100%">
+ <a href="#meu-modal25" class="botao-abrir">A Prova de Ajuste e Conforto</a>
+<!-- Estrutura do Modal -->
+<div id="meu-modal25" class="modal-overlay">
+<div class="modal-conteudo">
+<p>1. Vestimenta da peça semi-desmontada ou alinhavada no cliente para checar o novo caimento.</p>
+<p>2. Ajuste preciso de pences, decotes, cavas e comprimentos para garantir que a roupa esculpa o corpo perfeitamente.</p>
+<!-- Botão para fechar o modal (aponta para um ID vazio ou `#`) -->
+<a href="#" class="botao-fechar">&times;</a>
+</div></div></div>
+
+<div class="trilho">
+<img src="esconder.png" alt="Entrega" width="100%">
+<a href="#meu-modal26" class="botao-abrir">Costura Definitiva e Acabamentos Escondidos</a>
+<!-- Estrutura do Modal -->
+<div id="meu-modal26" class="modal-overlay">
+<div class="modal-conteudo">
+<p>1. Execução das costuras finais, muitas vezes reforçando pontos antigos que estavam fragilizados pelo tempo.</p>
+<p>2. Aplicação de técnicas para camuflar defeitos antigos do tecido, como bordados manuais, aplicações ou recortes estratégicos sobre manchas ou furos que não puderam ser cortados fora.</p>
+<!-- Botão para fechar o modal (aponta para um ID vazio ou `#`) -->
+<a href="#" class="botao-fechar">&times;</a>
+</div>
+</div>
+</div>
+
+<div class="trilho">
+<img src="nova_roupa.png" alt="Entrega" width="100%">
+<a href="#meu-modal27" class="botao-abrir">Finalização e Entrega da Nova História</a>
+<!-- Estrutura do Modal -->
+<div id="meu-modal27" class="modal-overlay">
+<div class="modal-conteudo">
+<p>1. Passadoria profissional para dar o acabamento de "roupa nova".</p>
+<p>2. Entrega da peça renovada, destacando para o cliente como o ciclo de vida daquela roupa foi estendido com sucesso e sustentabilidade.</p>
+<!-- Botão para fechar o modal (aponta para um ID vazio ou `#`) -->
+<a href="#" class="botao-fechar">&times;</a>
+</div></div></div></div>
+<hr>
+
+<p class="titulo_seções"><strong>Fale Conosco</strong></p>  
+<div class="fale_conosco" id="Fale_Conosco">
+<pre>Horário de atendimento: 
+<a href="" target="_blank"><img src="email.png" alt="" width="15%"></a><a href="https://wa.me/5537999417154?text= Olá,%20acabei%20de%20ver%20seu%20site%20e%20fiquei%20interessado(a)" target="_blank"><img src="WhatsApp.png" alt="" width="18%"></a>
+
+<a href="tel:5537999417154"><img src="telefone.png" alt="" width="13%"></a>
+</pre>
+<img src="localização.png" alt="" usemap="#endereço" width="10%" style="margin-left: -50px; margin-bottom: -30px;">
+<map name="endereço">
+<area target="_blank" alt="Endereço WM Atelier" title="Endereço WM Atelier" href="https://l1nk.dev/KgHM2oo" coords="358,5,4,206" shape="rect">
+</map>
+</div>
+</body>
+</html>
