@@ -8,20 +8,36 @@
 body {
 border: 1px solid black;
 margin: 5px;
-background-color: rgb(240, 240, 202);
+background-color: rgba(0, 0, 0, 0);
 font-family: sans-serif;
 }
 hr {
 border: none;
-height: 1px;
-background-color: black;
+height: 7px;
+background-color: gold;
 margin: 5px 0;
+}
+h2{
+color:rgb(206, 181, 40);
+padding: 8px;
+border: 3px solid  rgb(206, 181, 40);
+box-shadow: inset 0px 0px 15px 0px rgb(206, 181, 40);
 }
 img {
 margin-left: 5px;
 object-fit: contain;
 max-height: 100%;
 max-width: 100%;
+}
+section{
+background-color: black;
+margin: -12px 1px -4px 1px;
+}
+section p {
+color: rgb(206, 181, 40);
+padding: 8px;
+border: 3px solid  rgb(206, 181, 40);
+box-shadow: inset 0px 0px 15px 0px rgb(206, 181, 40);
 }
 #topo-real {
 scroll-margin-top: 2px !important;
@@ -59,7 +75,8 @@ margin-left: -8px;
 .titulo_seções {
 font-size: 20px;
 margin-top: 13px;
-margin-left: 3px;
+margin-left: 1px;
+margin-right: 1px;
 text-align: center;
 scroll-margin-top: 100px;
 font-weight: bold;
@@ -88,6 +105,8 @@ text-align: center;
 padding: 10px;
 flex-shrink: 0;
 margin: 5px;
+border: 3px solid  rgb(206, 181, 40);
+background-color:rgb(245, 245, 245);
 }
 .nav {
 justify-content: space-around;
@@ -222,12 +241,12 @@ border-width: 4px;
 <a href="#Casual">Moda casual</a>
 <a href="#Em_uso">Renovação de peças em uso</a>
 </nav>
-<br>
+<br><br>
 <hr>
+<br>
 
-
-<p class="titulo_seções" id="Sob_medida">Roupas sob medida</p>
-<p class="titulo_seções">Como funciona:</p>
+<section>
+<h2 class="titulo_seções" id="Sob_medida">Roupas sob medida<br>Como funciona:</h2>
 <!-- Aplicada a classe .carrossel aqui -->
 <div class="carrossel">
 <div class="trilho">
@@ -325,11 +344,14 @@ border-width: 4px;
 <!-- Botão para fechar o modal (aponta para um ID vazio ou `#`) -->
 <a href="#" class="botao-fechar">&times;</a>
 </div></div></div></div>
+</section>
 
+<br>
 <hr>
+<br>
 
-<p class="titulo_seções" id="Atemporais">Peças atemporais</p>
-<p class="titulo_seções">Como funciona:</p>
+<section>
+<p class="titulo_seções" id="Atemporais">Peças atemporais<br>Como funciona:</p>
 <!-- Aplicada a classe .carrossel aqui -->
 <div class="carrossel">
 <div class="trilho">
@@ -425,8 +447,13 @@ border-width: 4px;
 <!-- Botão para fechar o modal (aponta para um ID vazio ou `#`) -->
 <a href="#" class="botao-fechar">&times;</a>
 </div></div></div></div>
-<hr>
+</section>
 
+<br>
+<hr>
+<br>
+
+<section>
 <p class="titulo_seções" id="Casual">Moda casual</p>
 <p class="titulo_seções">Como funciona:</p>
 <!-- Aplicada a classe .carrossel aqui -->
@@ -524,8 +551,13 @@ border-width: 4px;
 <!-- Botão para fechar o modal (aponta para um ID vazio ou `#`) -->
 <a href="#" class="botao-fechar">&times;</a>
 </div></div></div></div>
+</section>
 
+<br>
 <hr>
+<br>
+
+<section>
 <p class="titulo_seções" id="Em_uso">Renovação de peças em uso</p>
 <p class="titulo_seções">Como funciona:</p>
 <!-- Aplicada a classe .carrossel aqui -->
@@ -623,7 +655,11 @@ border-width: 4px;
 <!-- Botão para fechar o modal (aponta para um ID vazio ou `#`) -->
 <a href="#" class="botao-fechar">&times;</a>
 </div></div></div></div>
+</section>
+
+<br>
 <hr>
+<br>
 
 <p class="titulo_seções"><strong>Fale Conosco</strong></p>  
 <div class="fale_conosco" id="Fale_Conosco">
